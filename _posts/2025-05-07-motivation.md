@@ -5,29 +5,31 @@ title: "Day 0 - Planning"
 
 ### Project Focus
 
-I want to simulate the collision of two blocks with friction and have them bounce off eachother and the walls. They will only move horizontally.
+I want to create a word game that asks for a word with certain parameters and has a timer. For example, it will ask "give a word that starts with the letter s" and a 10 second timer will count down. Failing to provide the word will result in the game ending and giving the word will result in a new word asked. It will slowly get harder by asking more difficult questions such as "name a 8 letter word that has h as the second letter." I may also make the timer get quicker and quicker. After failing it will return some kind of score.
 
 ---
 
 ### Why This Project 
 
-Last year during physics we solved many problems in this situation and I think it would be interesting to visualize it. There would be no friction and they could only go horizontally and bounce off the walls and each other. This would use many of the things we have learned in the course such as if statements.
+I first came up with this idea while thinking about a public speaking class I had last semester. In the class, we played a game where you would say a letter and go in a circle and if you spelled a word you were out but if you could not spell a word after you said a letter then you would be out. Although my game has major differences I liked the idea of timed word games. Additionally, I really enjoy the game pigeon word game where you have to find words quickly.
 
 ---
 
 ### What I Want to Learn
 
-How to do physics in coding and how to animate my coding.
+Learn how to make countdown timers and do inputs in python.
 
 
 
 ### My Approach 
 
-For the first 2 days I will focus on research. The next 2 days I will outline how the function will work. I will then work on cube movement for 2 days. The next 2 days I will work on cube with walls with another 2 for collisions with each other. I will spend a day letting it be customizable where you can choose the mass of the cubes. I will then spend a day testing the code. I will then have 2 days for preparation of the presentation.  
+Thursday May 15: Meet with you during office hours to talk about the project, make any changes to my project needed, learn how to make countdown timers and inputs on youtube. 
+Friday May 16: Continue how to make countdown timers and inputs on youtube. Outline how my code will run, how I will divide the code between multiple functions, and the args and returns of the functions. 
+Saturday May 17 - Sunday May 18: Code my function (probably start with the set of three functions I mentioned above because they seem the easiest and then move on to the rest of the code).
+Monday May 19: Test my code and make any changes needed.
 
 ---
 
 ### What's Next
 
-Learn how to have points on a grid and make them move.
-
+Learn how to make countdown timers and do inputs in python.
