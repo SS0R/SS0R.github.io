@@ -5,13 +5,13 @@ title: Final Chronicle
 
 ## About Me
 
-Hi, I'm Ross, a student interested in puzzle solving and physics.  
+Hi, I'm Ross, a student interested in puzzle solving and word games.  
 This project was part of my final quest in intro to computer programming, and it reflects what I’ve learned about pythyon coding and variable types.
 
 ## About My Project
 
-**Project Title:** *Block Collision*   
-**One-line pitch:** You can simulate block collisions
+**Project Title:** *Word Game*   
+**One-line pitch:** Play a game they give you requirements for a word continously until you fail and then returns a score.
 
 > Curious about what I’d do differently or recommend to others? Read my final thoughts here: [Final Tip & Takeaways](_posts/2025-05-23-tip.md)
 
