@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
-# Ross Kimme
 **UIUC Class of 2029**
 
 Welcome to my portfolio! Here you'll find a selection of projects showcasing my skills in data analysis, visualization, and applied research.
