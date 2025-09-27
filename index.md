@@ -1,7 +1,3 @@
----
-title: Ross K.
----
-
 <link rel="stylesheet" type="text/css" href="style.css">
 
 **UIUC Class of 2029**
