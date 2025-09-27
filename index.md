@@ -15,7 +15,7 @@ Welcome to my portfolio! Here you'll find a selection of projects showcasing my 
 ---
 
 ### 📫 Contact
-- 📧 Email: rossk@example.com  
+- 📧 Email: rkimme2@illinois.edu
 - 💼 [LinkedIn](https://linkedin.com/in/rosskimme)  
 - 🐙 [GitHub](https://github.com/SS0R)
 
