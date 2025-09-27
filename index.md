@@ -1,8 +1,8 @@
-<link rel="stylesheet" type="text/css" href="style.css">
+---
+title: Ross K.
+---
 
----
-title: Ross Kimme
----
+<link rel="stylesheet" type="text/css" href="style.css">
 
 **UIUC Class of 2029**
 
