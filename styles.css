@@ -1,24 +1,22 @@
-/* Header background color */
 .header {
     background-color: #13294B; /* PMS 2767 navy */
     color: white;
-    padding: 34px 0;
+    padding: 20px 0; /* shorter header */
 }
 
-/* Center content with side margins */
-.header .container {
+.header .header-inner {
     max-width: 1000px; /* limits width */
     margin: 0 auto;    /* center horizontally */
     padding: 0 20%;    /* quarter spacing on each side */
+    text-align: center; /* center the text */
 }
 
-/* Header text styling */
 .header h1 {
     margin: 0;
     font-size: 2.5em;
 }
 
-.header h2 {
+.header p {
     margin: 5px 0 0;
     font-weight: normal;
 }
@@ -30,10 +28,4 @@
 
 .header a:hover {
     text-decoration: underline;
-}
-
-/* Links line */
-.header div {
-    margin-top: 10px;
-    font-size: 16px;
 }
