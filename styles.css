@@ -1,41 +1,39 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #333;
+/* Header background color */
+.header {
+    background-color: #13294B; /* PMS 2767 navy */
+    color: white;
+    padding: 40px 0;
 }
 
-.site-header {
-  background-color: #13294B; /* UIUC PMS 2767 */
-  color: white;
-  padding: 40px 0;  /* top/bottom spacing */
+/* Center content with side margins */
+.header .container {
+    max-width: 1000px; /* limits width */
+    margin: 0 auto;    /* center horizontally */
+    padding: 0 20%;    /* quarter spacing on each side */
 }
 
-.header-inner {
-  max-width: 900px;   /* content doesn’t stretch across the whole page */
-  margin: 0 auto;     /* center block horizontally */
-  padding: 0 20px;    /* small side padding */
+/* Header text styling */
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
 }
 
-.header-inner h1 {
-  margin: 0;
-  font-size: 2.5em;
+.header h2 {
+    margin: 5px 0 0;
+    font-weight: normal;
 }
 
-.header-inner p {
-  margin: 10px 0;
-  font-size: 1.1em;
+.header a {
+    color: white;
+    text-decoration: none;
 }
 
-.header-inner a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 15px;
+.header a:hover {
+    text-decoration: underline;
 }
 
-.header-inner a:hover {
-  text-decoration: underline;
-}
-
-.main-content {
-  padding: 40px 20px;
+/* Links line */
+.header div {
+    margin-top: 10px;
+    font-size: 16px;
 }
