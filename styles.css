@@ -1,22 +1,26 @@
-/* Header background color */
+/* Header background color and spacing */
 .header {
     background-color: #13294B; /* PMS 2767 navy */
     color: white;
-    padding: 15px 0; /* makes header shorter */
+    padding: 10px 0; /* makes header shorter */
+    border: none !important;
+    box-shadow: none !important;
 }
 
-/* Center content */
+/* Header inner container — vertical stacking and center alignment */
 .header .header-inner {
     max-width: 100%;
     margin: 0 auto;
     padding: 0;
     display: flex;
+    flex-direction: column; /* stack items vertically */
     justify-content: center;
+    align-items: center; /* center horizontally */
 }
 
 /* Quarter spacing for header content */
 .header .header-content {
-    max-width: 60%; /* leaves 20% on each side */
+    max-width: 60%; /* leaves ~20% on each side */
     min-width: 400px; /* stops it from getting too small */
     padding: 0 20px;
     text-align: center;
