@@ -2,7 +2,7 @@
 .header {
     background-color: #13294B; /* PMS 2767 navy */
     color: white;
-    padding: 15px 0; /* makes header shorter */
+    padding: 20px 0; /* makes header shorter */
 }
 
 /* Center content */
@@ -39,9 +39,4 @@
 
 .header a:hover {
     text-decoration: underline;
-}
-
-.header {
-    border: none !important;
-    box-shadow: none !important;
 }
