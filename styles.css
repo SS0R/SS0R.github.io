@@ -1,24 +1,35 @@
+/* Header background color */
 .header {
     background-color: #13294B; /* PMS 2767 navy */
     color: white;
-    padding: 20px 0; /* shorter header */
+    padding: 20px 0; /* makes header shorter */
 }
 
+/* Center content */
 .header .header-inner {
-    max-width: 1000px; /* limits width */
-    margin: 0 auto;    /* center horizontally */
-    padding: 0 20%;    /* quarter spacing on each side */
-    text-align: center; /* center the text */
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
+/* Quarter spacing for header content */
+.header .header-content {
+    max-width: 60%; /* leaves 20% on each side */
+    min-width: 400px; /* stops it from getting too small */
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Header text styling */
 .header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
 .header p {
-    margin: 5px 0 0;
-    font-weight: normal;
+    margin: 5px 0;
 }
 
 .header a {
