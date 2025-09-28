@@ -1,58 +1,41 @@
-/* Basic reset */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #333;
 }
 
-/* Header styling */
 .site-header {
-  background-color: #13294B; /* UIUC PMS 2767 navy */
+  background-color: #13294B; /* UIUC PMS 2767 */
   color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  padding: 40px 0;  /* top/bottom spacing */
 }
 
-/* Inner content width (starts/ends a quarter in) */
-.header-content {
-  max-width: 1200px;   /* keeps content from being too wide */
-  margin: 0 auto;      /* centers the block */
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.header-inner {
+  max-width: 900px;   /* content doesn’t stretch across the whole page */
+  margin: 0 auto;     /* center block horizontally */
+  padding: 0 20px;    /* small side padding */
 }
 
-.header-left h1 {
+.header-inner h1 {
   margin: 0;
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
-.header-left p {
-  margin: 5px 0 0 0;
-  font-size: 1em;
-  font-weight: 300;
+.header-inner p {
+  margin: 10px 0;
+  font-size: 1.1em;
 }
 
-.header-right .social-links a {
-  color: white;
+.header-inner a {
+  color: #fff;
   text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
+  margin-right: 15px;
 }
 
-.header-right .social-links a:hover {
+.header-inner a:hover {
   text-decoration: underline;
 }
 
-/* Main content spacing */
 .main-content {
   padding: 40px 20px;
-}
-
-.intro {
-  font-size: 1.2em;
-  line-height: 1.6;
 }
