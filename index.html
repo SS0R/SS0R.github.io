@@ -1,28 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ross K. | Data Science Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f0f0e;
+      --bg-panel:  #161614;
+      --bg-card:   #1b1b19;
+      --border:    #2e2e2b;
+      --border-lt: #3d3d39;
+      --text:      #d4d0c8;
+      --text-dim:  #7d7a72;
+      --text-muted:#4a4845;
+      --accent:    #c8a96e;  /* warm gold — feels institutional */
+      --accent-dim:#7a6540;
+      --link:      #9db8cf;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ─── Layout ─────────────────────────────────────────── */
+    .site-wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── Top bar ─────────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15,15,14,0.95);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+    }
+
+    header .inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-id {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .site-id span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      font-size: 12.5px;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    /* ─── Profile section ─────────────────────────────────── */
+    #profile {
+      padding: 4.5rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 2px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .profile-photo svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.18;
+    }
+
+    .profile-info h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #e8e4da;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .profile-title {
+      font-size: 13px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.1rem;
+    }
+
+    .profile-bio {
+      color: var(--text);
+      font-size: 14.5px;
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+
+    .profile-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.8rem;
+      font-size: 12.5px;
+      color: var(--text-dim);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .profile-meta a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .profile-meta a:hover { text-decoration: underline; }
+
+    /* ─── Section common ──────────────────────────────────── */
+    .section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: #e0dbd0;
+      letter-spacing: 0.01em;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── Research / interests ────────────────────────────── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+
+    .interest-item {
+      background: var(--bg-card);
+      padding: 1.2rem 1.4rem;
+    }
+
+    .interest-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .interest-desc {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ─── Projects ────────────────────────────────────────── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+
+    .project-row {
+      background: var(--bg-card);
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.4rem 1.5rem;
+      transition: background 0.15s;
+      cursor: default;
+    }
+
+    .project-row:hover {
+      background: #1f1f1d;
+    }
+
+    .project-thumb {
+      width: 220px;
+      height: 130px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 1px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* Mini SVG chart decorations for thumbnails */
+    .thumb-chart {
+      width: 100%;
+      height: 100%;
+      opacity: 0.55;
+    }
+
+    .project-body {}
+
+    .project-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #ddd8cc;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 1px 6px;
+      border-radius: 1px;
+    }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      max-width: 480px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .project-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--link);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .project-links a:hover { text-decoration: underline; }
+
+    /* ─── Publications ────────────────────────────────────── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .pub-year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--accent-dim);
+      padding-top: 0.15rem;
+      text-align: right;
+    }
+
+    .pub-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .pub-authors {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      margin-bottom: 0.1rem;
+    }
+
+    .pub-venue {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .pub-venue a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .pub-venue a:hover { text-decoration: underline; }
+
+    /* ─── Contact ─────────────────────────────────────────── */
+    #contact {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-block p {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 380px;
+    }
+
+    .contact-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 1rem;
+      font-size: 13px;
+    }
+
+    .contact-key {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding-top: 1px;
+    }
+
+    .contact-val {
+      color: var(--text-dim);
+    }
+
+    .contact-val a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .contact-val a:hover { text-decoration: underline; }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+
+    footer .inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 11.5px;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--text-muted);
+    }
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .profile-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .profile-photo { width: 100px; height: 100px; }
+      .interests-grid { grid-template-columns: 1fr; }
+      .project-row { grid-template-columns: 1fr; }
+      .project-thumb { width: 100%; height: 140px; }
+      .project-links { align-items: flex-start; flex-direction: row; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav { gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-      <div class="header-inner">
-        <h1>Ross K.</h1>
-        <p>Data Science · Visualization · Storytelling</p>
-        <p>
-          <a href="https://github.com/yourusername">GitHub</a> ·
-          <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> ·
-          <a href="mailto:youremail@example.com">Email</a>
-        </p>
-      </div>
-    </header>
 
-  <main class="main-content">
-    <section class="intro">
-      <p>Welcome! This site showcases my projects in data science, visualization, and storytelling.</p>
+  <!-- Top bar -->
+  <header>
+    <div class="inner">
+      <div class="site-id"><span>//</span> Your Name</div>
+      <nav>
+        <a href="#profile">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#coursework">Coursework</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="site-wrapper">
+
+    <!-- ── Profile ── -->
+    <section id="profile">
+      <div class="profile-grid">
+        <div class="profile-photo">
+          <!-- Replace with: <img src="photo.jpg" alt="Your Name" style="width:100%;height:100%;object-fit:cover;"> -->
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="24" r="12" stroke="#d4d0c8" stroke-width="1.5"/>
+            <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#d4d0c8" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="profile-info">
+          <h1>Your Full Name</h1>
+          <div class="profile-title">Undergraduate Student · [Your Major] · Class of 20XX</div>
+          <p class="profile-bio">
+            Brief bio goes here. Mention your major, university, and what you're interested in — data visualization, a particular domain, tools you're learning. A sentence or two about what you're looking to do after graduation is a natural fit here too.
+          </p>
+          <div class="profile-meta">
+            <span>[University Name]</span>
+            <a href="mailto:you@university.edu">you@university.edu</a>
+            <a href="https://github.com/yourhandle" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+            <a href="/resume.pdf" target="_blank">Résumé (PDF)</a>
+          </div>
+        </div>
+      </div>
     </section>
-  </main>
+
+    <!-- ── Areas of Interest ── -->
+    <section class="section" id="research">
+      <div class="section-header">
+        <h2 class="section-title">Areas of Interest</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <div class="interest-label">Data Visualization</div>
+          <div class="interest-desc">Building clear, honest visuals that communicate structure and patterns in data.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-label">Your Second Interest</div>
+          <div class="interest-desc">Short description — a domain, method, or type of problem you find interesting.</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-label">Your Third Interest</div>
+          <div class="interest-desc">Short description of the topic and why it draws your attention.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Projects ── -->
+    <section class="section" id="projects">
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="projects-list">
+
+        <!-- Project 1 -->
+        <div class="project-row">
+          <div class="project-thumb">
+            <!-- Replace with a screenshot: <img src="project1.png" style="width:100%;height:100%;object-fit:cover;"> -->
+            <svg class="thumb-chart" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="20,100 50,70 80,80 110,40 140,55 170,25 200,35"
+                fill="none" stroke="#c8a96e" stroke-width="1.5" opacity="0.7"/>
+              <polyline points="20,100 50,70 80,80 110,40 140,55 170,25 200,35"
+                fill="none" stroke="#c8a96e" stroke-width="6" opacity="0.08"/>
+              <line x1="20" y1="110" x2="200" y2="110" stroke="#3d3d39" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Project Title One</div>
+            <div class="project-tags">
+              <span class="tag">Personal Project</span>
+              <span class="tag">Python</span>
+              <span class="tag">D3.js</span>
+            </div>
+            <p class="project-desc">
+              Describe what you built, what data you used, and what you were trying to show or learn. Personal projects are a great place to note the motivation — what made you want to explore this?
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">Live demo →</a>
+            <a href="#">GitHub →</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-row">
+          <div class="project-thumb">
+            <svg class="thumb-chart" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+              <rect x="30" y="60" width="20" height="50" fill="#9db8cf" opacity="0.35"/>
+              <rect x="60" y="40" width="20" height="70" fill="#9db8cf" opacity="0.35"/>
+              <rect x="90" y="75" width="20" height="35" fill="#9db8cf" opacity="0.35"/>
+              <rect x="120" y="30" width="20" height="80" fill="#9db8cf" opacity="0.35"/>
+              <rect x="150" y="50" width="20" height="60" fill="#9db8cf" opacity="0.35"/>
+              <line x1="20" y1="110" x2="200" y2="110" stroke="#3d3d39" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Project Title Two</div>
+            <div class="project-tags">
+              <span class="tag">Class Project</span>
+              <span class="tag">R</span>
+              <span class="tag">ggplot2</span>
+            </div>
+            <p class="project-desc">
+              Describe this project — what class it was for, what the goal was, and what you actually did. It's fine to say it was a class assignment; the work speaks for itself.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">View →</a>
+            <a href="#">GitHub →</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-row">
+          <div class="project-thumb">
+            <svg class="thumb-chart" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="110" cy="65" r="40" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
+              <circle cx="110" cy="65" r="28" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
+              <circle cx="110" cy="65" r="16" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
+              <circle cx="90" cy="55" r="5" fill="#c8a96e" opacity="0.5"/>
+              <circle cx="125" cy="72" r="8" fill="#9db8cf" opacity="0.4"/>
+              <circle cx="105" cy="80" r="4" fill="#c8a96e" opacity="0.35"/>
+              <circle cx="120" cy="48" r="6" fill="#9db8cf" opacity="0.35"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Project Title Three</div>
+            <div class="project-tags">
+              <span class="tag">Personal Project</span>
+              <span class="tag">Observable</span>
+              <span class="tag">Spatial Data</span>
+            </div>
+            <p class="project-desc">
+              A third project. What dataset did you use? What did you build? What did you learn from doing it? Even short projects are worth including if you're proud of them.
+            </p>
+          </div>
+          <div class="project-links">
+            <a href="#">View →</a>
+            <a href="#">GitHub →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Coursework ── -->
+    <section class="section" id="coursework">
+      <div class="section-header">
+        <h2 class="section-title">Relevant Coursework</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <div class="interest-label">Data & Visualization</div>
+          <div class="interest-desc">Data Visualization, Introduction to Data Science, Information Design</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-label">Methods & Analysis</div>
+          <div class="interest-desc">Statistics, Linear Algebra, Algorithms and Data Structures</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-label">Domain Courses</div>
+          <div class="interest-desc">Replace with courses relevant to your major or area of focus</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section id="contact" class="section" style="border-bottom:none;">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-block">
+          <p>
+            Feel free to reach out — whether about the projects on this site, potential collaborations, or just to connect. I'm also always interested in internship and research opportunities.
+          </p>
+        </div>
+        <div class="contact-table">
+          <div class="contact-row">
+            <span class="contact-key">Email</span>
+            <span class="contact-val"><a href="mailto:you@university.edu">you@university.edu</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">University</span>
+            <span class="contact-val">[University Name], Class of 20XX</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">GitHub</span>
+            <span class="contact-val"><a href="#">github.com/yourhandle</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">LinkedIn</span>
+            <span class="contact-val"><a href="#">linkedin.com/in/yourprofile</a></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-key">Résumé</span>
+            <span class="contact-val"><a href="#">Download PDF</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /site-wrapper -->
+
+  <footer>
+    <div class="inner">
+      <p>© 2025 Your Name</p>
+      <p>Last updated: January 2025</p>
+    </div>
+  </footer>
+
 </body>
 </html>
