@@ -38,7 +38,6 @@
       grid-template-columns: auto 1fr;
       align-items: end;
       gap: 48px;
-      border-bottom: 1px solid var(--border);
     }
 
     .name {
@@ -73,6 +72,8 @@
       padding: 56px 0;
       border-bottom: 1px solid var(--border);
     }
+
+    section:first-child { border-top: 1px solid var(--border); }
 
     .label {
       font-size: 0.7rem;
@@ -169,6 +170,28 @@
       border-radius: 2px;
       color: #555;
     }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .skill-box {
+      background: #fff;
+      padding: 16px 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      transition: background 0.12s;
+    }
+
+    .skill-box:hover { background: #fafafa; }
 
     /* ── CONTACT ── */
     .contact-grid {
@@ -297,6 +320,24 @@
           <span class="tag">Statistics</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-box">Python</div>
+      <div class="skill-box">NumPy</div>
+      <div class="skill-box">Pandas</div>
+      <div class="skill-box">SciPy</div>
+      <div class="skill-box">Scikit-learn</div>
+      <div class="skill-box">Data Analysis</div>
+      <div class="skill-box">Statistics</div>
+      <div class="skill-box">Basic SQL</div>
+      <div class="skill-box">Data Visualization</div>
+      <div class="skill-box">Jupyter Notebooks</div>
+<div class="skill-box">Technical Writing</div>
+      <div class="skill-box">Claude / Codex (IDE)</div>
     </div>
   </section>
 
