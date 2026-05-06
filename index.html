@@ -1,683 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ross Kimme</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0f0f0e;
-      --bg-panel:  #161614;
-      --bg-card:   #1b1b19;
-      --border:    #2e2e2b;
-      --border-lt: #3d3d39;
-      --text:      #d4d0c8;
-      --text-dim:  #7d7a72;
-      --text-muted:#4a4845;
-      --accent:    #c8a96e;  /* warm gold — feels institutional */
-      --accent-dim:#7a6540;
-      --link:      #9db8cf;
+      --black: #080808;
+      --gray: #888;
+      --border: #e4e4e4;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'IBM Plex Sans', sans-serif;
+      background: #fff;
+      color: var(--black);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 15px;
-      line-height: 1.65;
-      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
-    /* ─── Layout ─────────────────────────────────────────── */
-    .site-wrapper {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    body::-webkit-scrollbar { display: none; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
 
-    /* ─── Top bar ─────────────────────────────────────────── */
+    /* ── HEADER ── */
     header {
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      background: rgba(15,15,14,0.95);
-      backdrop-filter: blur(6px);
-      z-index: 100;
-    }
-
-    header .inner {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .site-id {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
-      color: var(--text-dim);
-      letter-spacing: 0.04em;
-    }
-
-    .site-id span {
-      color: var(--accent);
-    }
-
-    nav {
-      display: flex;
-      gap: 1.8rem;
-    }
-
-    nav a {
-      font-size: 12.5px;
-      font-family: 'IBM Plex Mono', monospace;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    nav a:hover { color: var(--text); }
-
-    /* ─── Profile section ─────────────────────────────────── */
-    #profile {
-      padding: 4.5rem 0 3.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .profile-grid {
+      padding: 72px 80px 56px;
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 3rem;
-      align-items: start;
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      gap: 48px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .profile-photo {
-      width: 160px;
-      height: 160px;
-      border-radius: 2px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    .name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
     }
 
-    .profile-photo svg {
-      width: 64px;
-      height: 64px;
-      opacity: 0.18;
-    }
-
-    .profile-info h1 {
-      font-family: 'EB Garamond', serif;
-      font-size: 2.4rem;
+    .subtitle {
+      margin-top: 18px;
+      font-size: 0.75rem;
       font-weight: 500;
-      letter-spacing: 0.01em;
-      color: #e8e4da;
-      margin-bottom: 0.25rem;
-      line-height: 1.2;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
     }
 
-    .profile-title {
-      font-size: 13px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 1.1rem;
+    .headshot {
+      width: calc(clamp(3.5rem, 9vw, 8rem) * 1.84);
+      height: calc(clamp(3.5rem, 9vw, 8rem) * 1.84);
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 3px;
     }
 
-    .profile-bio {
-      color: var(--text);
-      font-size: 14.5px;
-      max-width: 580px;
-      line-height: 1.75;
-      margin-bottom: 1.4rem;
-    }
+    /* ── LAYOUT ── */
+    main { padding: 0 80px; }
 
-    .profile-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1.8rem;
-      font-size: 12.5px;
-      color: var(--text-dim);
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    .profile-meta a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    .profile-meta a:hover { text-decoration: underline; }
-
-    /* ─── Section common ──────────────────────────────────── */
-    .section {
-      padding: 3.5rem 0;
+    section {
+      padding: 56px 0;
       border-bottom: 1px solid var(--border);
     }
 
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .section-title {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.45rem;
+    .label {
+      font-size: 0.7rem;
       font-weight: 500;
-      color: #e0dbd0;
-      letter-spacing: 0.01em;
-    }
-
-    .section-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ─── Research / interests ────────────────────────────── */
-    .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      border: 1px solid var(--border);
-      background: var(--border);
-    }
-
-    .interest-item {
-      background: var(--bg-card);
-      padding: 1.2rem 1.4rem;
-    }
-
-    .interest-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 0.35rem;
+      color: var(--gray);
+      margin-bottom: 28px;
     }
 
-    .interest-desc {
-      font-size: 13.5px;
-      color: var(--text-dim);
-      line-height: 1.55;
+    /* ── BIO ── */
+    .bio-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+      line-height: 1.45;
+      letter-spacing: -0.025em;
+      max-width: 860px;
     }
 
-    /* ─── Projects ────────────────────────────────────────── */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      border: 1px solid var(--border);
-      background: var(--border);
-    }
-
-    .project-row {
-      background: var(--bg-card);
+    /* ── PROJECTS ── */
+    .projects-grid {
       display: grid;
-      grid-template-columns: 220px 1fr auto;
-      gap: 1.5rem;
-      align-items: start;
-      padding: 1.4rem 1.5rem;
-      transition: background 0.15s;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .project-card {
+      background: #fff;
+      padding: 28px 30px;
+      transition: background 0.12s;
       cursor: default;
     }
 
-    .project-row:hover {
-      background: #1f1f1d;
-    }
-
-    .project-thumb {
-      width: 220px;
-      height: 130px;
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: 1px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    /* Mini SVG chart decorations for thumbnails */
-    .thumb-chart {
-      width: 100%;
-      height: 100%;
-      opacity: 0.55;
-    }
-
-    .project-body {}
+    .project-card:hover { background: #fafafa; }
 
     .project-name {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #ddd8cc;
-      margin-bottom: 0.2rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
     }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.7rem;
+    .project-name a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .tag {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10.5px;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-      padding: 1px 6px;
-      border-radius: 1px;
-    }
+    .project-name a:hover { text-decoration: underline; }
 
     .project-desc {
-      font-size: 13.5px;
-      color: var(--text-dim);
-      line-height: 1.65;
-      max-width: 480px;
+      font-size: 0.875rem;
+      color: var(--gray);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
     }
 
     .project-links {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.5rem;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .project-link {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .project-link:hover { color: var(--black); border-color: var(--black); }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #f1f1f1;
+      padding: 3px 7px;
+      border-radius: 2px;
+      color: #555;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .contact-box {
+      background: #fff;
+      padding: 16px 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      text-decoration: none;
+      transition: background 0.12s;
+    }
+
+    .contact-box:hover { background: #fafafa; }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+
+    .c-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      width: 76px;
       flex-shrink: 0;
     }
 
-    .project-links a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11.5px;
-      color: var(--link);
+    .c-link {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--black);
       text-decoration: none;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.12s;
     }
 
-    .project-links a:hover { text-decoration: underline; }
+    .c-link:hover { border-bottom-color: var(--black); }
 
-    /* ─── Publications ────────────────────────────────────── */
-    .pub-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
-    }
-
-    .pub-item {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 1.2rem;
-      align-items: start;
-    }
-
-    .pub-year {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11.5px;
-      color: var(--accent-dim);
-      padding-top: 0.15rem;
-      text-align: right;
-    }
-
-    .pub-title {
-      font-family: 'EB Garamond', serif;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 0.15rem;
-    }
-
-    .pub-authors {
-      font-size: 12.5px;
-      color: var(--text-dim);
-      margin-bottom: 0.1rem;
-    }
-
-    .pub-venue {
-      font-size: 12px;
-      font-style: italic;
-      color: var(--text-muted);
-    }
-
-    .pub-venue a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    .pub-venue a:hover { text-decoration: underline; }
-
-    /* ─── Contact ─────────────────────────────────────────── */
-    #contact {
-      padding: 3.5rem 0 4rem;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .contact-block p {
-      font-size: 13.5px;
-      color: var(--text-dim);
-      line-height: 1.75;
-      max-width: 380px;
-    }
-
-    .contact-table {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .contact-row {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 1rem;
-      font-size: 13px;
-    }
-
-    .contact-key {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding-top: 1px;
-    }
-
-    .contact-val {
-      color: var(--text-dim);
-    }
-
-    .contact-val a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    .contact-val a:hover { text-decoration: underline; }
-
-    /* ─── Footer ──────────────────────────────────────────── */
+    /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 0;
+      padding: 32px 80px;
+      font-size: 0.75rem;
+      color: #ccc;
     }
 
-    footer .inner {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    footer p {
-      font-size: 11.5px;
-      font-family: 'IBM Plex Mono', monospace;
-      color: var(--text-muted);
-    }
-
-    /* ─── Responsive ──────────────────────────────────────── */
-    @media (max-width: 700px) {
-      .profile-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .profile-photo { width: 100px; height: 100px; }
-      .interests-grid { grid-template-columns: 1fr; }
-      .project-row { grid-template-columns: 1fr; }
-      .project-thumb { width: 100%; height: 140px; }
-      .project-links { align-items: flex-start; flex-direction: row; }
-      .contact-grid { grid-template-columns: 1fr; }
-      nav { gap: 1rem; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header, main, footer { padding-left: 24px; padding-right: 24px; }
+      header { grid-template-columns: 1fr; gap: 24px; }
+      .headshot { width: 100px; height: 100px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top bar -->
-  <header>
-    <div class="inner">
-      <div class="site-id"><span>//</span> Ross Kimme</div>
-      <nav>
-        <a href="#profile">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#coursework">Coursework</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<header>
+  <img src="headshot.JPG" alt="Ross Kimme" class="headshot">
+  <div>
+    <h1 class="name">Ross<br>Kimme</h1>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <p class="label">About</p>
+    <p class="bio-text">I'm a freshman at UIUC exploring the intersection of data, systems, and problem-solving. I'm drawn to questions that combine quantitative thinking with real-world applications—whether that's understanding how policies shape behavior, optimizing physical systems, or building tools that help people make better decisions.</p>
+  </section>
+
+  <section id="projects">
+    <p class="label">Projects</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <p class="project-name"><a href="https://ss0r.github.io/UIUC-Course-Explorer/" target="_blank">UIUC Course Explorer & GenEd Planner</a></p>
+        <p class="project-desc">Full-stack app aggregating GPA data, live section status, and professor ratings for UIUC course planning. Features a backtracking set-cover algorithm for optimal gen-ed combinations, prerequisite tree visualization, and grade distribution histograms.</p>
+        <div class="tags">
+          <span class="tag">Full-Stack</span>
+          <span class="tag">Algorithms</span>
+          <span class="tag">Data</span>
+        </div>
+        <div class="project-links">
+          <a href="https://ss0r.github.io/UIUC-Course-Explorer/" target="_blank" class="project-link">Live</a>
+          <a href="https://github.com/SS0R/UIUC-Course-Explorer" target="_blank" class="project-link">GitHub</a>
+          <a href="https://youtu.be/5PwuS-e9ZzY" target="_blank" class="project-link">Demo</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-name">ICE Deportation Risk Classifier</p>
+        <p class="project-desc">Deportation risk classifier and detention time predictor built on real ICE FOIA data. Designed to interpret black-box detention decisions and help nonprofits allocate legal resources.</p>
+        <div class="tags">
+          <span class="tag">ML</span>
+          <span class="tag">Python</span>
+          <span class="tag">FOIA Data</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-name">2024 Election Polling Analysis</p>
+        <p class="project-desc">Analyzed 600+ polls using confidence intervals and sampling distributions to identify discrepancies between polling predictions and actual 2024 election results.</p>
+        <div class="tags">
+          <span class="tag">Statistics</span>
+          <span class="tag">Python</span>
+          <span class="tag">Data</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-name">World Happiness Index Predictor</p>
+        <p class="project-desc">Predicted World Happiness Index scores using economic and societal indicators. Applied feature scaling to interpret variable importance across countries.</p>
+        <div class="tags">
+          <span class="tag">ML</span>
+          <span class="tag">Python</span>
+          <span class="tag">Statistics</span>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <div class="site-wrapper">
-
-    <!-- ── Profile ── -->
-    <section id="profile">
-      <div class="profile-grid">
-        <div class="profile-photo">
-          <img src="headshot.JPG" alt="Ross Kimme" style="width:100%;height:100%;object-fit:cover;">
-        </div>
-        <div class="profile-info">
-          <h1>Ross Kimme</h1>
-          <div class="profile-title">Undergraduate Student</div>
-          <p class="profile-bio">
-            I'm a freshman at UIUC exploring the intersection of data, systems, and problem-solving. I'm drawn to questions that combine quantitative thinking with real-world applications—whether that's understanding how policies shape behavior, optimizing physical systems, or building tools that help people make better decisions.
-          </p>
-          <div class="profile-meta">
-            <span>University of Illinois Urbana-Champaign</span>
-            <a href="mailto:you@university.edu">rkimme2@illinois.edu</a>
-            <a href="https://github.com/SS0R" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/rosskimme" target="_blank">LinkedIn</a>
-            <a href="/resume.pdf" target="_blank">Résumé (PDF)</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Areas of Interest ── -->
-    <section class="section" id="research">
-      <div class="section-header">
-        <h2 class="section-title">Areas of Interest</h2>
-        <div class="section-rule"></div>
-      </div>
-      <div class="interests-grid">
-        <div class="interest-item">
-          <div class="interest-label">Data Visualization</div>
-          <div class="interest-desc">Building clear, honest visuals that communicate structure and patterns in data.</div>
-        </div>
-        <div class="interest-item">
-          <div class="interest-label">Your Second Interest</div>
-          <div class="interest-desc">Short description — a domain, method, or type of problem you find interesting.</div>
-        </div>
-        <div class="interest-item">
-          <div class="interest-label">Your Third Interest</div>
-          <div class="interest-desc">Short description of the topic and why it draws your attention.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Projects ── -->
-    <section class="section" id="projects">
-      <div class="section-header">
-        <h2 class="section-title">Projects</h2>
-        <div class="section-rule"></div>
-      </div>
-      <div class="projects-list">
-
-        <!-- Project 1 -->
-        <div class="project-row">
-          <div class="project-thumb">
-            <!-- Replace with a screenshot: <img src="project1.png" style="width:100%;height:100%;object-fit:cover;"> -->
-            <svg class="thumb-chart" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
-              <polyline points="20,100 50,70 80,80 110,40 140,55 170,25 200,35"
-                fill="none" stroke="#c8a96e" stroke-width="1.5" opacity="0.7"/>
-              <polyline points="20,100 50,70 80,80 110,40 140,55 170,25 200,35"
-                fill="none" stroke="#c8a96e" stroke-width="6" opacity="0.08"/>
-              <line x1="20" y1="110" x2="200" y2="110" stroke="#3d3d39" stroke-width="1"/>
-            </svg>
-          </div>
-          <div class="project-body">
-            <div class="project-name">Project Title One</div>
-            <div class="project-tags">
-              <span class="tag">Personal Project</span>
-              <span class="tag">Python</span>
-              <span class="tag">D3.js</span>
-            </div>
-            <p class="project-desc">
-              Describe what you built, what data you used, and what you were trying to show or learn. Personal projects are a great place to note the motivation — what made you want to explore this?
-            </p>
-          </div>
-          <div class="project-links">
-            <a href="#">Live demo →</a>
-            <a href="#">GitHub →</a>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-row">
-          <div class="project-thumb">
-            <svg class="thumb-chart" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
-              <rect x="30" y="60" width="20" height="50" fill="#9db8cf" opacity="0.35"/>
-              <rect x="60" y="40" width="20" height="70" fill="#9db8cf" opacity="0.35"/>
-              <rect x="90" y="75" width="20" height="35" fill="#9db8cf" opacity="0.35"/>
-              <rect x="120" y="30" width="20" height="80" fill="#9db8cf" opacity="0.35"/>
-              <rect x="150" y="50" width="20" height="60" fill="#9db8cf" opacity="0.35"/>
-              <line x1="20" y1="110" x2="200" y2="110" stroke="#3d3d39" stroke-width="1"/>
-            </svg>
-          </div>
-          <div class="project-body">
-            <div class="project-name">Project Title Two</div>
-            <div class="project-tags">
-              <span class="tag">Class Project</span>
-              <span class="tag">R</span>
-              <span class="tag">ggplot2</span>
-            </div>
-            <p class="project-desc">
-              Describe this project — what class it was for, what the goal was, and what you actually did. It's fine to say it was a class assignment; the work speaks for itself.
-            </p>
-          </div>
-          <div class="project-links">
-            <a href="#">View →</a>
-            <a href="#">GitHub →</a>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="project-row">
-          <div class="project-thumb">
-            <svg class="thumb-chart" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="110" cy="65" r="40" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
-              <circle cx="110" cy="65" r="28" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
-              <circle cx="110" cy="65" r="16" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
-              <circle cx="90" cy="55" r="5" fill="#c8a96e" opacity="0.5"/>
-              <circle cx="125" cy="72" r="8" fill="#9db8cf" opacity="0.4"/>
-              <circle cx="105" cy="80" r="4" fill="#c8a96e" opacity="0.35"/>
-              <circle cx="120" cy="48" r="6" fill="#9db8cf" opacity="0.35"/>
-            </svg>
-          </div>
-          <div class="project-body">
-            <div class="project-name">Project Title Three</div>
-            <div class="project-tags">
-              <span class="tag">Personal Project</span>
-              <span class="tag">Observable</span>
-              <span class="tag">Spatial Data</span>
-            </div>
-            <p class="project-desc">
-              A third project. What dataset did you use? What did you build? What did you learn from doing it? Even short projects are worth including if you're proud of them.
-            </p>
-          </div>
-          <div class="project-links">
-            <a href="#">View →</a>
-            <a href="#">GitHub →</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── Coursework ── -->
-    <section class="section" id="coursework">
-      <div class="section-header">
-        <h2 class="section-title">Relevant Coursework</h2>
-        <div class="section-rule"></div>
-      </div>
-      <div class="interests-grid">
-        <div class="interest-item">
-          <div class="interest-label">Data & Visualization</div>
-          <div class="interest-desc">Data Visualization, Introduction to Data Science, Information Design</div>
-        </div>
-        <div class="interest-item">
-          <div class="interest-label">Methods & Analysis</div>
-          <div class="interest-desc">Statistics, Linear Algebra, Algorithms and Data Structures</div>
-        </div>
-        <div class="interest-item">
-          <div class="interest-label">Domain Courses</div>
-          <div class="interest-desc">Replace with courses relevant to your major or area of focus</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Contact ── -->
-    <section id="contact" class="section" style="border-bottom:none;">
-      <div class="section-header">
-        <h2 class="section-title">Contact</h2>
-        <div class="section-rule"></div>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-block">
-          <p>
-            Feel free to reach out — whether about the projects on this site, potential collaborations, or just to connect. I'm also always interested in internship and research opportunities.
-          </p>
-        </div>
-        <div class="contact-table">
-          <div class="contact-row">
-            <span class="contact-key">Email</span>
-            <span class="contact-val"><a href="mailto:you@university.edu">rkimme2@illinois.edu</a></span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-key">University</span>
-            <span class="contact-val">University of Illinois Urbana-Champaign</span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-key">GitHub</span>
-            <span class="contact-val"><a href="https://github.com/SS0R" target="_blank">github.com/SS0R</a></span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-key">LinkedIn</span>
-            <span class="contact-val"><a href="#">linkedin.com/in/rosskimme</a></span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-key">Résumé</span>
-            <span class="contact-val"><a href="#">Download PDF</a></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div><!-- /site-wrapper -->
-
-  <footer>
-    <div class="inner">
-      <p>© 2025 Ross Kimme</p>
-      <p>Last updated: January 2025</p>
+  <section id="contact">
+    <p class="label">Contact</p>
+    <div class="contact-grid">
+      <a href="mailto:rkimme2@illinois.edu" class="contact-box">rkimme2@illinois.edu</a>
+      <a href="https://linkedin.com/in/rosskimme" target="_blank" class="contact-box">LinkedIn</a>
+      <a href="https://github.com/SS0R" target="_blank" class="contact-box">GitHub</a>
+      <a href="Ross Kimme Resume.pdf" target="_blank" class="contact-box">Resume</a>
     </div>
-  </footer>
+  </section>
+
+</main>
+
+<footer>© 2026 Ross Kimme</footer>
 
 </body>
 </html>
