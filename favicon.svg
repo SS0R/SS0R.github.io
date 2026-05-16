@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="64" height="64" fill="#ffffff"/>
+  <text
+    x="32" y="47"
+    font-family="Outfit, 'Arial Black', sans-serif"
+    font-weight="800"
+    font-size="34"
+    text-anchor="middle"
+    letter-spacing="-1"
+    fill="#080808"
+  >RK</text>
+</svg>
