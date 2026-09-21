@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ross Kimme</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --gray: #888;
+      --border: #e4e4e4;
+    }
+
+    body {
+      background: #fff;
+      color: var(--black);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    body::-webkit-scrollbar { display: none; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* ── HEADER ── */
+    header {
+      padding: 72px 80px 56px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      gap: 48px;
+    }
+
+    .name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin-top: 18px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .headshot {
+      width: calc(clamp(3.5rem, 9vw, 8rem) * 1.84);
+      height: calc(clamp(3.5rem, 9vw, 8rem) * 1.84);
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 3px;
+    }
+
+    /* ── LAYOUT ── */
+    main { padding: 0 80px; }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:first-child { border-top: 1px solid var(--border); }
+
+    .label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+
+    /* ── BIO ── */
+    .bio-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+      line-height: 1.45;
+      letter-spacing: -0.025em;
+      max-width: 860px;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .project-card {
+      background: #fff;
+      padding: 28px 30px;
+      transition: background 0.12s;
+      cursor: default;
+    }
+
+    .project-card:hover { background: #fafafa; }
+
+    .project-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .project-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .project-name a:hover { text-decoration: underline; }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--gray);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .project-link {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .project-link:hover { color: var(--black); border-color: var(--black); }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #f1f1f1;
+      padding: 3px 7px;
+      border-radius: 2px;
+      color: #555;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .skill-box {
+      background: #fff;
+      padding: 16px 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      transition: background 0.12s;
+    }
+
+    .skill-box:hover { background: #fafafa; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .contact-box {
+      background: #fff;
+      padding: 16px 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      text-decoration: none;
+      transition: background 0.12s;
+    }
+
+    .contact-box:hover { background: #fafafa; }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+
+    .c-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      width: 76px;
+      flex-shrink: 0;
+    }
+
+    .c-link {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.12s;
+    }
+
+    .c-link:hover { border-bottom-color: var(--black); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 80px;
+      font-size: 0.75rem;
+      color: #ccc;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header, main, footer { padding-left: 24px; padding-right: 24px; }
+      header { grid-template-columns: 1fr; gap: 24px; }
+      .headshot { width: 100px; height: 100px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="headshot.JPG" alt="Ross Kimme" class="headshot">
+  <div>
+    <h1 class="name">Ross<br>Kimme</h1>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <p class="label">About</p>
+    <p class="bio-text">I'm a student at UIUC exploring the intersection of data, systems, and problem-solving. I'm drawn to questions that combine quantitative thinking with real-world applications—whether that's understanding how policies shape behavior, optimizing physical systems, or building tools that help people make better decisions.</p>
+  </section>
+
+  <section id="projects">
+    <p class="label">Projects</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <p class="project-name"><a href="https://github.com/SS0R/cmapss-rul-prediction" target="_blank">CMAPSS LSTM — Remaining Useful Life</a> <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;font-size:0.7rem;letter-spacing:0.08em;color:var(--gray);text-transform:uppercase;">(In Progress)</span></p>
+        <p class="project-desc">LSTM neural network predicting Remaining Useful Life of jet turbine engines using NASA's CMAPSS benchmark. Sliding 30-cycle windows over 21 sensors feed a stacked LSTM for regression against true RUL labels. Generalizes to any safety-critical system with time-series sensor monitoring.</p>
+        <div class="tags">
+          <span class="tag">Deep Learning</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">Time Series</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/SS0R/cmapss-rul-prediction" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-name"><a href="https://ss0r.github.io/UIUC-Course-Explorer/" target="_blank">UIUC Course Explorer & GenEd Planner</a></p>
+        <p class="project-desc">Full-stack app aggregating GPA data, live section status, and professor ratings for UIUC course planning. Features a backtracking set-cover algorithm for optimal gen-ed combinations, prerequisite tree visualization, and grade distribution histograms.</p>
+        <div class="tags">
+          <span class="tag">Full-Stack</span>
+          <span class="tag">Algorithms</span>
+          <span class="tag">Data</span>
+        </div>
+        <div class="project-links">
+          <a href="https://ss0r.github.io/UIUC-Course-Explorer/" target="_blank" class="project-link">Live</a>
+          <a href="https://github.com/SS0R/UIUC-Course-Explorer" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-name">ICE Deportation Risk Classifier</p>
+        <p class="project-desc">Deportation risk classifier and detention time predictor built on real ICE FOIA data. Designed to interpret black-box detention decisions and help nonprofits allocate legal resources.</p>
+        <div class="tags">
+          <span class="tag">ML</span>
+          <span class="tag">Python</span>
+          <span class="tag">FOIA Data</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <p class="project-name">2024 Election Polling Analysis</p>
+        <p class="project-desc">Analyzed 600+ polls using confidence intervals and sampling distributions to identify discrepancies between polling predictions and actual 2024 election results.</p>
+        <div class="tags">
+          <span class="tag">Statistics</span>
+          <span class="tag">Python</span>
+          <span class="tag">Data</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-box">Python</div>
+      <div class="skill-box">NumPy</div>
+      <div class="skill-box">Pandas</div>
+      <div class="skill-box">SciPy</div>
+      <div class="skill-box">Scikit-learn</div>
+      <div class="skill-box">VS Code</div>
+      <div class="skill-box">Matplotlib</div>
+      <div class="skill-box">Seaborn</div>
+      <div class="skill-box">Technical Writing</div>
+      <div class="skill-box">Jupyter Notebooks</div>
+      <div class="skill-box">Data Analysis and Statistics</div>
+      <div class="skill-box">Claude / Codex (IDE)</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="label">Contact</p>
+    <div class="contact-grid">
+      <a href="mailto:rkimme2@illinois.edu" class="contact-box">rkimme2@illinois.edu</a>
+      <a href="https://linkedin.com/in/rosskimme" target="_blank" class="contact-box">LinkedIn</a>
+      <a href="https://github.com/SS0R" target="_blank" class="contact-box">GitHub</a>
+      <a href="ross_kimme_resume.pdf" target="_blank" class="contact-box">Resume</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Ross Kimme</footer>
+
+</body>
+</html>
